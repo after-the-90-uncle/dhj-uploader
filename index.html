@@ -1,0 +1,142 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Language" content="zh-cn" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dhj-uploader</title>
+  <style>
+    html,
+    body {
+      background-color: #f2f3f5;
+    }
+
+    html,
+    body,
+    div,
+    a {
+      padding: 0;
+      margin: 0;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .title {
+      padding: 10px;
+      font-size: 20px;
+      line-height: 1.5;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 20px auto;
+      width: 80%;
+      height: 200px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      background-color: #fff;
+      overflow: hidden;
+    }
+
+    .btn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 200px;
+      height: 50px;
+      color: #fff;
+      font-size: 14px;
+      background-color: #1677ff;
+    }
+
+    .progress {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: var(--progress);
+      height: 20px;
+      background-color: #1677ff;
+    }
+
+    .progressnumber {
+      display: none;
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      width: 100px;
+      margin-left: -50px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #1677ff;
+      text-align: center;
+    }
+
+    .filename {
+      position: absolute;
+      top: 130px;
+      font-size: 14px;
+      height: 20px;
+    }
+
+    input {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="title">文件上传</div>
+  <div class="card">
+    <div class="progressnumber">12%</div>
+    <a href="javascript:;" class="btn">点击上传</a>
+    <div class="filename"></div>
+    <div class="progress" style="--progress: 0%" progress="0%"></div>
+  </div>
+  <input type="file" id="fileInput" name="file" />
+  <script>
+    var progress = document.querySelector(".progress");
+    var progressnumber = document.querySelector(".progressnumber");
+    var filename = document.querySelector(".filename");
+    document.querySelector(".btn").addEventListener("click", function () {
+      document.getElementById("fileInput").click();
+    });
+    document.getElementById("fileInput").addEventListener("change", function (e) {
+      progressnumber.style.display = "none";
+      progress.style.setProperty("--progress", "0%");
+      uploadFile(e.target.files[0]);
+    });
+
+    function uploadFile(file) {
+      filename.innerHTML = file.name;
+      var formData = new FormData();
+      formData.append("file", file);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open("POST", "/upload", true);
+
+      progressnumber.style.display = "block";
+      xhr.upload.onprogress = function (event) {
+        if (event.lengthComputable) {
+          var percentComplete = (event.loaded / event.total) * 100;
+          progress.style.setProperty("--progress", percentComplete + "%");
+          progressnumber.innerHTML = percentComplete.toFixed(2) + "%";
+        }
+      };
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+        } else {
+          alert("Upload failed!");
+        }
+      };
+
+      xhr.send(formData);
+    }
+  </script>
+</body>
+
+</html>
