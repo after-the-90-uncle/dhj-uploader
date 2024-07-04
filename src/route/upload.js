@@ -9,7 +9,7 @@ router.post("/", async (ctx,next) => {
       sound: true, 
       wait: false
     });
-  console.log(new Date())
+  console.log("上传成功: ",ctx.request.files.file.originalFilename)
   ctx.body = "ok";
 })
 

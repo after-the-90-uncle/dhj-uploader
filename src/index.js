@@ -27,7 +27,7 @@ app.use(views(path.join(__dirname,".."), {
   extension: "html",
 }));
 
-app.use(require("koa-logger")());
+// app.use(require("koa-logger")());
 
 
 app.use(koaBody({
