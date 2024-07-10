@@ -9,7 +9,7 @@ router.use("/upload", upload.routes(), upload.allowedMethods());
 // });
 
 router.get("/", async (ctx, next) => {
-  await ctx.render("upload");
+  await ctx.render("index");
 });
 
 // function showDir() {

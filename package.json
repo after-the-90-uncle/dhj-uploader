@@ -1,6 +1,6 @@
 {
   "name": "dhj-uploader",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "文件上传服务器",
   "keywords": [
     "http",
@@ -44,8 +44,9 @@
     "babel-preset-minify": "^0.5.2",
     "nodemon": "^3.1.4"
   },
-  "bin": ".packer/server/index.js",
+  "bin": "lib/index.js",
   "pkg": {
-    "assets": []
+    "assets": ["index.html"]
+    
   }
 }

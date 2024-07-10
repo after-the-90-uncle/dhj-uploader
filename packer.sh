@@ -10,6 +10,7 @@ if [ -d .packer ]; then
   rm -r .packer 
 fi
 mkdir .packer
+cp packer.js .packer/
 NODE_ENV=packer babel src --out-dir .packer/server 
 pkg . -t $system_os 
 chmod +x dhj-uploader

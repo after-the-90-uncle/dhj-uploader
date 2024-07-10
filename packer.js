@@ -1,4 +1,5 @@
-#!/usr/bin/env node
+
+process.env.NODE_ENV = 'packer';
 const colors = require('colors')
 const os = require('os');
 const yargs = require('yargs/yargs');
@@ -15,10 +16,9 @@ const argv = yargs(hideBin(process.argv))
 const networkInterfaces = os.networkInterfaces();
 
 const port = argv.p;
-
-const server = require('./server').default;
-server.listen(port);
-server.timeout = 24 * 60 * 60;
+const app = require('./server/server').default;
+app.listen(port);
+app.timeout = 24 * 60 * 60;
 
 console.log("上传目录：",`${process.cwd()}`.green.underline);
 for (let item in networkInterfaces) {

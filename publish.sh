@@ -5,8 +5,9 @@ if [ -d uploader ]; then
   rm -r uploader
 fi
 mkdir uploader
-cd http-upload-server
-cp index.html ../uploader/index.html
+cd dhj-uploader
+cp README.md ../uploader
+cp index.html ../uploader
 mv dist ../uploader/lib
 cp package.json ../uploader
 cd ../uploader
