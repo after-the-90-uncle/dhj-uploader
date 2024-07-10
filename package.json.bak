@@ -21,6 +21,14 @@
     "pub": "sh publish.sh",
     "packer": "sh ./packer.sh"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/after-the-90-uncle/http-upload-server.git"
+  },
+  "bugs": {
+    "url": "https://github.com/after-the-90-uncle/http-upload-server/issues"
+  },
+  "homepage": "https://github.com/after-the-90-uncle/http-upload-server#readme",
   "dependencies": {
     "colors": "^1.4.0",
     "koa": "^2.15.3",
