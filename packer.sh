@@ -12,5 +12,5 @@ fi
 mkdir .packer
 NODE_ENV=packer babel src --out-dir .packer/server 
 pkg . -t $system_os 
-chmod +x http-upload
+chmod +x dhj-uploader
 
